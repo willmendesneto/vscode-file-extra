@@ -10,16 +10,15 @@ import { activate } from '../../extension';
 
 // TODO: Use `ExtensionContext` type for context
 const context: any = {
-    subscriptions: [],
+  subscriptions: [],
 };
 
 // Defines a Mocha test suite to group tests of similar kind together
 suite('Extension Tests', () => {
+  // Defines a Mocha unit test
+  test('Should have only 4 commands', () => {
+    activate(context);
 
-    // Defines a Mocha unit test
-    test('Should have only 4 commands', () => {
-        activate(context);
-
-        assert.equal(context.subscriptions.length, 4);
-    });
+    assert.equal(context.subscriptions.length, 4);
+  });
 });
