@@ -1,7 +1,7 @@
 {
-  "name": "vscode-duplicate-remove-file",
-  "displayName": "vscode-duplicate-remove-file",
-  "description": "VSCode Extension to simulate duplicate and remove files based on Atom Editor",
+  "name": "vscode-file-extra",
+  "displayName": "vscode-file-extra",
+  "description": "VSCode Extension for files based on Atom Editor",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.32.0"
@@ -9,48 +9,91 @@
   "categories": [
     "Other"
   ],
+  "keywords": [
+    "utils",
+    "extra",
+    "helper",
+    "files",
+    "move",
+    "duplicate",
+    "add",
+    "create",
+    "rename",
+    "remove",
+    "delete"
+  ],
+  "icon": "images/logo.png",
+  "galleryBanner": {
+    "color": "#FFF",
+    "theme": "light"
+  },
   "activationEvents": [
-    "onCommand:treeViewDuplicate.execute",
-    "onCommand:treeViewRemove.execute"
+    "onCommand:fileExtraDuplicate.execute",
+    "onCommand:fileExtraRemove.execute",
+    "onCommand:fileExtraRename.execute",
+    "onCommand:fileExtraAdd.execute"
   ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "treeViewDuplicate.execute",
+        "command": "fileExtraDuplicate.execute",
+        "category": "FileExtra",
         "title": "Duplicate file or folder"
       },
       {
-        "command": "treeViewRemove.execute",
+        "command": "fileExtraRemove.execute",
+        "category": "FileExtra",
         "title": "Remove file or folder"
+      },
+      {
+        "command": "fileExtraRename.execute",
+        "category": "FileExtra",
+        "title": "Rename file"
+      },
+      {
+        "command": "fileExtraAdd.execute",
+        "category": "FileExtra",
+        "title": "Add new file or folder"
       }
     ],
     "menus": {
       "explorer/context": [
         {
-          "command": "treeViewDuplicate.execute"
+          "command": "fileExtraDuplicate.execute"
         },
         {
-          "command": "treeViewRemove.execute"
+          "command": "fileExtraAdd.execute"
         }
       ],
       "editor/title/context": [
         {
-          "command": "treeViewDuplicate.execute"
+          "command": "fileExtraDuplicate.execute"
         },
         {
-          "command": "treeViewRemove.execute"
+          "command": "fileExtraRemove.execute"
+        },
+        {
+          "command": "fileExtraRename.execute"
+        },
+        {
+          "command": "fileExtraAdd.execute"
         }
       ]
     },
     "configuration": {
       "type": "object",
-      "title": "Duplicate Action Configuration FUCK YEAH!",
+      "title": "File extra Configuration",
       "properties": {
-        "duplicate.openFileAfterCopy": {
+        "fileExtra.openFileAfterCopy": {
           "type": "boolean",
           "default": true,
           "description": "Automatically open newly copied files"
+        },
+        "fileExtra.closeFileAfterRemove": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically close file in editor after remove"
         }
       }
     }
@@ -60,6 +103,7 @@
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
     "postinstall": "node ./node_modules/vscode/bin/install",
+    "lint": "tslint -e './node_modules/**/*.ts' -e './typings/**/*.ts' './**/*.ts'",
     "test": "npm run compile && node ./node_modules/vscode/bin/test"
   },
   "devDependencies": {
@@ -72,7 +116,6 @@
     "vscode": "^1.1.28"
   },
   "dependencies": {
-    "fs-extra": "^7.0.1",
-    "lodash.escaperegexp": "^4.1.2"
+    "fs-extra": "^7.0.1"
   }
 }
