@@ -1,0 +1,78 @@
+{
+  "name": "vscode-duplicate-remove-file",
+  "displayName": "vscode-duplicate-remove-file",
+  "description": "VSCode Extension to simulate duplicate and remove files based on Atom Editor",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.32.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:treeViewDuplicate.execute",
+    "onCommand:treeViewRemove.execute"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "treeViewDuplicate.execute",
+        "title": "Duplicate file or folder"
+      },
+      {
+        "command": "treeViewRemove.execute",
+        "title": "Remove file or folder"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "treeViewDuplicate.execute"
+        },
+        {
+          "command": "treeViewRemove.execute"
+        }
+      ],
+      "editor/title/context": [
+        {
+          "command": "treeViewDuplicate.execute"
+        },
+        {
+          "command": "treeViewRemove.execute"
+        }
+      ]
+    },
+    "configuration": {
+      "type": "object",
+      "title": "Duplicate Action Configuration FUCK YEAH!",
+      "properties": {
+        "duplicate.openFileAfterCopy": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically open newly copied files"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "postinstall": "node ./node_modules/vscode/bin/install",
+    "test": "npm run compile && node ./node_modules/vscode/bin/test"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^5.0.5",
+    "@types/lodash.escaperegexp": "^4.1.6",
+    "@types/mocha": "^2.2.42",
+    "@types/node": "^10.12.21",
+    "tslint": "^5.12.1",
+    "typescript": "^3.3.1",
+    "vscode": "^1.1.28"
+  },
+  "dependencies": {
+    "fs-extra": "^7.0.1",
+    "lodash.escaperegexp": "^4.1.2"
+  }
+}
