@@ -78,7 +78,7 @@ const duplicate = async ({
         await ensureDir(newPathParsed.dir);
         await copy(oldPath, newPath);
 
-        if (settings.openFileAfterCopy && oldPathStats.isFile()) {
+        if (settings.openFileAfterDuplication && oldPathStats.isFile()) {
             return openFile(newPath);
         }
     } catch (err) {

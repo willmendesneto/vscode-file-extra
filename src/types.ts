@@ -6,7 +6,7 @@ export type FileStats = Stats;
 export type FileParsedPath = ParsedPath;
 
 export interface IPluginSettings {
-    openFileAfterCopy: boolean;
+    openFileAfterDuplication: boolean;
     closeFileAfterRemove: boolean;
 }
 

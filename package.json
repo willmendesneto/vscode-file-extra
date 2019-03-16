@@ -85,10 +85,10 @@
       "type": "object",
       "title": "File extra Configuration",
       "properties": {
-        "fileExtra.openFileAfterCopy": {
+        "fileExtra.openFileAfterDuplication": {
           "type": "boolean",
           "default": true,
-          "description": "Automatically open newly copied files"
+          "description": "Automatically open newly duplicated files"
         },
         "fileExtra.closeFileAfterRemove": {
           "type": "boolean",
