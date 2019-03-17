@@ -21,14 +21,15 @@ Go to the explorer list of files and folder and click on the file.
 
 Options:
 
-- `Add New File or Folder`: Adds a new file or folder;
 - `Duplicate File or Folder`: Duplicates File or Folder based on the focus location;
+
+![Available Commands in Editor Explorer](images/command-list-explorer.png)
 
 ### Command palette
 
 Type `cmd+shift+p` or `cmd+shift+p` for open the command pallete. All the commands have the prefix "FileExtra: ". So, after that, you can select one of these commands pressing [Enter] to confirm, or [Escape] to cancel.
 
-![feature X](images/command-list.png)
+![Available Commands in Command Pallete](images/command-list.png)
 
 ## Requirements
 
