@@ -16,9 +16,9 @@ describe('Prompt Helper', () => {
 
   beforeEach(() => {
     prompt = proxyquire('../../../helpers/prompt', {
-      'vscode': {
+      vscode: {
         window: { showWarningMessage, showInformationMessage, showInputBox },
-      }
+      },
     });
   });
 
@@ -36,7 +36,7 @@ describe('Prompt Helper', () => {
       assert.deepEqual(showWarningMessage.firstCall.args[1], {
         title: 'OK',
         isCloseAffordance: false,
-        ...opts
+        ...opts,
       });
     });
   });
@@ -58,7 +58,7 @@ describe('Prompt Helper', () => {
 
       assert.deepEqual(showInputBox.firstCall.args[0], {
         placeHolder,
-        value
+        value,
       });
     });
   });

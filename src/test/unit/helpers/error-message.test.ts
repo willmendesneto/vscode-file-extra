@@ -8,11 +8,10 @@ describe('Error Helper', () => {
   const showErrorMessage = sandbox.stub();
 
   beforeEach(() => {
-
     errorMessage = proxyquire('../../../helpers/error-message', {
-      'vscode': {
+      vscode: {
         window: { showErrorMessage },
-      }
+      },
     }).errorMessage;
   });
 

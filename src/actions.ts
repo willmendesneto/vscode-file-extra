@@ -233,12 +233,11 @@ const add = async ({
     // Get the new full path
     const newPath = buildFilepath(newFilename, workspaceRootPath);
     // Check if the current path exists
-    let newPathStats;
     const newPathExists = await filePathExists(newPath);
+    const newPathParsed = parse(newPath);
 
     if (newPathExists) {
-      newPathStats = await fs.stat(newPath);
-      if (!newPathStats.isFile()) {
+      if (!newPathParsed.ext) {
         await showInformationMessage(`**${newPath}** alredy exists.`);
         return;
       }
@@ -250,15 +249,14 @@ const add = async ({
         return;
       }
     }
-    const newPathParsed = parse(newPath);
 
     await fs.ensureDir(newPathParsed.dir);
     if (!!newPathParsed.ext) {
       await fs.createFileSync(newPath);
     }
 
-    if (!newPathStats && !!newPathParsed.ext) {
-      newPathStats = await fs.stat(newPath);
+    if (!!newPathParsed.ext) {
+      const newPathStats = await fs.stat(newPath);
 
       if (newPathStats.isFile()) {
         return openFile(newPath);

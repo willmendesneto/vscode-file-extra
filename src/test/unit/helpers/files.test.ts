@@ -17,11 +17,11 @@ describe('Files Helper', () => {
     openTextDocument.returns(Promise.resolve(FILENAME));
     executeCommand.returns(Promise.resolve(true));
     files = proxyquire('../../../helpers/files', {
-      'vscode': {
+      vscode: {
         window: { showTextDocument },
         commands: { executeCommand },
         workspace: { openTextDocument },
-      }
+      },
     });
   });
 
@@ -42,7 +42,10 @@ describe('Files Helper', () => {
     it('should force refresh for file explorer', async () => {
       await files.openFile(FILENAME);
 
-      assert.equal(executeCommand.firstCall.args[0], 'workbench.files.action.refreshFilesExplorer');
+      assert.equal(
+        executeCommand.firstCall.args[0],
+        'workbench.files.action.refreshFilesExplorer'
+      );
     });
 
     it('should show the received file in the editor', async () => {
