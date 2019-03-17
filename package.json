@@ -2,7 +2,7 @@
   "name": "vscode-file-extra",
   "displayName": "vscode-file-extra",
   "description": "VSCode Extension for files based on Atom Editor",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "private": false,
   "license": "MIT",
   "publisher": "willmendesneto",
