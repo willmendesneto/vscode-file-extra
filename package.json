@@ -5,6 +5,7 @@
   "version": "0.0.1",
   "private": false,
   "license": "MIT",
+  "publisher": "willmendesneto",
   "engines": {
     "vscode": "^1.32.0"
   },
