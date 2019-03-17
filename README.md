@@ -1,7 +1,7 @@
 # vscode-file-extra
 
+[![Build Status](https://travis-ci.org/willmendesneto/vscode-file-extra.svg?branch=master)](https://travis-ci.org/willmendesneto/vscode-file-extra)
 [![Prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
-
 [![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE)
 
 ![Yeoman](./images/logo.png)
