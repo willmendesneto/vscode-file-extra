@@ -40,6 +40,16 @@ If you have any requirements or dependencies, add a section describing those and
 - `fileExtra.openFileAfterDuplication`: Automatically open newly duplicated files
 - `fileExtra.closeFileAfterRemove`: Automatically close file in editor after remove
 
+### Run tests
+
+1. Run `npm test` for run tests. In case you want to test using watch, please use `npm run tdd`
+
+### Publish
+
+this project is using `vsce` package to publish, which makes things straightforward. EX: `vsce publish <patch|minor|major>`
+
+> For more details, [please check vsce package on npmjs.com](https://www.npmjs.com/package/vsce) and read VSCode docs ["Publishing Extension"](https://code.visualstudio.com/api/working-with-extensions/publishing-extension)
+
 ## Changes
 
 See [CHANGELOG.md](./CHANGELOG.md) for more details.

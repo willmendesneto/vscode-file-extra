@@ -6,6 +6,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## [1.1.0][] - 2019-03-17
+
 ### Updated
 
 - Decreased bundle size of the extension
