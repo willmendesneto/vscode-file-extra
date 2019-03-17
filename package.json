@@ -1,6 +1,6 @@
 {
-  "name": "vscode-file-extras",
-  "displayName": "vscode-file-extras",
+  "name": "vscode-file-extra",
+  "displayName": "vscode-file-extra",
   "description": "VSCode Extension for files based on Atom Editor",
   "version": "0.0.1",
   "private": false,
@@ -27,12 +27,12 @@
   "icon": "images/logo.png",
   "repository": {
     "type": "git",
-    "url": "https://github.com/willmendesneto/vscode-file-extras.git"
+    "url": "https://github.com/willmendesneto/vscode-file-extra.git"
   },
   "bugs": {
-    "url": "https://github.com/willmendesneto/vscode-file-extras/issues"
+    "url": "https://github.com/willmendesneto/vscode-file-extra/issues"
   },
-  "homepage": "https://github.com/willmendesneto/vscode-file-extras#readme",
+  "homepage": "https://github.com/willmendesneto/vscode-file-extra#readme",
   "galleryBanner": {
     "color": "#FFF",
     "theme": "light"

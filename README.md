@@ -1,8 +1,9 @@
-# VSCode File Extras
+# VSCode File Extra
 
 > Working with files in VSCode like a boss 😎
 
-[![Build Status](https://travis-ci.org/willmendesneto/vscode-file-extras.svg?branch=master)](https://travis-ci.org/willmendesneto/vscode-file-extras)
+[![Build Status](https://travis-ci.org/willmendesneto/vscode-file-extra.svg?branch=master)](https://travis-ci.org/willmendesneto/vscode-file-extra)
+[![Build Windows Status](https://ci.appveyor.com/api/projects/status/github/willmendesneto/vscode-file-extra?svg=true)](https://ci.appveyor.com/project/willmendesneto/vscode-file-extra/branch/master)
 [![Prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE)
 
