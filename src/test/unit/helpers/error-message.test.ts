@@ -1,12 +1,29 @@
 import * as assert from 'assert';
+import * as sinon from 'sinon';
+import * as proxyquire from 'proxyquire';
 
-import { errorMessage } from '../../../helpers/error-message';
+describe('Error Helper', () => {
+  let errorMessage;
+  const sandbox = sinon.createSandbox();
+  const showErrorMessage = sandbox.stub();
 
-suite('Error Helper', () => {
-  test('should build path to file', () => {
+  beforeEach(() => {
+
+    errorMessage = proxyquire('../../../helpers/error-message', {
+      'vscode': {
+        window: { showErrorMessage },
+      }
+    }).errorMessage;
+  });
+
+  afterEach(() => sandbox.reset());
+
+  after(() => sandbox.restore());
+
+  it('should build path to file', () => {
     const error = new Error('Dummy message');
+    errorMessage(error);
 
-    // TODO: check if mock for mock `showErrorMessage` was called with the message
-    // assert.equal(showErrorMessage, `Error: ${errMsg}`);
+    assert.equal(showErrorMessage.firstCall.args[0], `Error: ${error.message}`);
   });
 });

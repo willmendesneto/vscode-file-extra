@@ -7,15 +7,15 @@ import {
 
 const STRING_TEST = '/Folder/internal/file.js/';
 
-suite('String Manipulation Helper', () => {
-  test('should remove first slash in the string', () => {
+describe('String Manipulation Helper', () => {
+  it('should remove first slash in the string', () => {
     assert.equal(
       removeFirstSlashInString(STRING_TEST),
       'Folder/internal/file.js/'
     );
   });
 
-  test('should remove first slash in the string', () => {
+  it('should remove first slash in the string', () => {
     assert.equal(
       removeLastSlashInString(STRING_TEST),
       '/Folder/internal/file.js'

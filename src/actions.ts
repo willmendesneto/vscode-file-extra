@@ -257,12 +257,12 @@ const add = async ({
       await fs.createFileSync(newPath);
     }
 
-    if (!newPathStats) {
+    if (!newPathStats && !!newPathParsed.ext) {
       newPathStats = await fs.stat(newPath);
-    }
 
-    if (!!newPathParsed.ext && newPathStats.isFile()) {
-      return openFile(newPath);
+      if (newPathStats.isFile()) {
+        return openFile(newPath);
+      }
     }
 
     await commands.executeCommand(
