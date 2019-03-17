@@ -5,3 +5,6 @@ node_modules
 *.vsix
 .nyc-output
 coverage
+tsconfig.json
+webpack.config.json
+dist

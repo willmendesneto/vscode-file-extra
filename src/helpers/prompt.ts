@@ -1,33 +1,24 @@
-import * as vscode from 'vscode';
+import { window, MessageItem } from 'vscode';
 
 const showWarningMessage = (
   message: string,
   options: Object = {}
-): Promise<vscode.MessageItem | undefined> => {
-  const action = {
+): Promise<MessageItem | undefined> =>
+  window.showWarningMessage(message, {
     title: 'OK',
     isCloseAffordance: false,
     ...options,
-  };
-
-  return vscode.window.showWarningMessage(message, action) as Promise<
-    vscode.MessageItem | undefined
-  >;
-};
+  }) as Promise<MessageItem | undefined>;
 
 const showInformationMessage = (
   message: string
-): Promise<vscode.MessageItem | undefined> => {
-  return vscode.window.showInformationMessage(message) as Promise<
-    vscode.MessageItem | undefined
-  >;
-};
+): Thenable<string | undefined> => window.showInformationMessage(message);
 
 const showInputBox = (
   placeHolder: string,
   filename: string
 ): Promise<string | undefined> => {
-  return vscode.window.showInputBox({
+  return window.showInputBox({
     placeHolder,
     value: filename,
   }) as Promise<string | undefined>;
