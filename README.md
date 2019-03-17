@@ -1,5 +1,9 @@
 # vscode-file-extra
 
+[![Prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+
+[![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE)
+
 ![Yeoman](./images/logo.png)
 
 This is the README for your extension "vscode-file-extra". After writing up a brief description, we recommend including the following sections.
