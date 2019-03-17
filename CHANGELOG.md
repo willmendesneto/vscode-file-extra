@@ -10,6 +10,12 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 - Fixing Build task in CI
 
+## [1.1.2][] - 2019-03-17
+
+## Fixed
+
+- Fixing Build task in CI
+
 ## [1.1.1][] - 2019-03-17
 
 ## Fixed
@@ -41,3 +47,5 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 [unreleased]: https://github.com/willmendesneto/vscode-file-extra/compare/v1.1.1...HEAD
 [1.1.1]: https://github.com/willmendesneto/vscode-file-extra/tree/v1.1.1
+[unreleased]: https://github.com/willmendesneto/vscode-file-extra/compare/v1.1.2...HEAD
+[1.1.2]: https://github.com/willmendesneto/vscode-file-extra/tree/v1.1.2
