@@ -24,3 +24,7 @@ export type ActionParamsBuilder = {
   settings: IPluginSettings;
   editor: TextEditor | undefined;
 };
+
+export type CopyOptions = {
+  removeRoot: boolean;
+};

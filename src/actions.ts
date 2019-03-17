@@ -6,16 +6,9 @@ import {
   window as vsWindow,
 } from 'vscode';
 import { parse } from 'path';
-import {
-  pathExists,
-  stat,
-  ensureDir,
-  copy,
-  createFileSync,
-  rename,
-  removeSync,
-} from 'fs-extra';
-import { ActionParams } from './types';
+import * as fs from 'fs-extra';
+import { writeSync as writeToClipboard } from 'clipboardy';
+import { ActionParams, CopyOptions } from './types';
 import { buildFilepath } from './helpers/files';
 import {
   showInputBox,
@@ -30,7 +23,7 @@ import {
 
 const filePathExists = async (newPath: string): Promise<boolean> => {
   // Check if the current path exists
-  const newPathExists = await pathExists(newPath);
+  const newPathExists = await fs.pathExists(newPath);
   return !!newPathExists;
 };
 
@@ -58,7 +51,7 @@ const duplicate = async ({
   const oldPathParsed = parse(oldPath);
 
   try {
-    const oldPathStats = await stat(oldPath);
+    const oldPathStats = await fs.stat(oldPath);
     // Add extemsion if is a file
     const extension = oldPathStats.isFile() ? oldPathParsed.ext : '';
     const workspaceLocation = oldPathParsed.dir.replace(workspaceRootPath, '');
@@ -88,11 +81,11 @@ const duplicate = async ({
       return;
     }
 
-    // Check if the current path exists
-    const newPathStats = await stat(newPath);
     const newPathExists = await filePathExists(newPath);
 
+    // Check if the current path exists
     if (newPathExists) {
+      const newPathStats = await fs.stat(newPath);
       if (!newPathStats.isFile()) {
         await showInformationMessage(`**${newPath}** alredy exists.`);
         return;
@@ -107,8 +100,8 @@ const duplicate = async ({
     }
 
     const newPathParsed = parse(newPath);
-    await ensureDir(newPathParsed.dir);
-    await copy(oldPath, newPath);
+    await fs.ensureDir(newPathParsed.dir);
+    await fs.copy(oldPath, newPath);
 
     if (settings.openFileAfterDuplication && oldPathStats.isFile()) {
       return openFile(newPath);
@@ -128,7 +121,7 @@ const remove = async ({
   settings,
 }: ActionParams): Promise<TextEditor | undefined> => {
   try {
-    await removeSync(uri.fsPath);
+    await fs.removeSync(uri.fsPath);
     await commands.executeCommand(
       'workbench.files.action.refreshFilesExplorer'
     );
@@ -154,7 +147,7 @@ const renameFile = async ({
   try {
     const oldPath = uri.fsPath;
     const oldPathParsed = parse(oldPath);
-    const oldPathStats = await stat(oldPath);
+    const oldPathStats = await fs.stat(oldPath);
 
     // Add extemsion if is a file
     const extension = oldPathStats.isFile() ? oldPathParsed.ext : '';
@@ -183,9 +176,9 @@ const renameFile = async ({
 
     // Check if the current path exists
     const newPathExists = await filePathExists(newPath);
-    const newPathStats = await stat(newPath);
 
     if (newPathExists) {
+      const newPathStats = await fs.stat(newPath);
       if (!newPathStats.isFile()) {
         await showInformationMessage(`**${newPath}** alredy exists.`);
         return;
@@ -200,8 +193,8 @@ const renameFile = async ({
     }
 
     const newPathParsed = parse(newPath);
-    await ensureDir(newPathParsed.dir);
-    await rename(oldPath, newPath);
+    await fs.ensureDir(newPathParsed.dir);
+    await fs.rename(oldPath, newPath);
     await commands.executeCommand('workbench.action.closeActiveEditor');
     return openFile(newPath);
   } catch (err) {
@@ -240,10 +233,11 @@ const add = async ({
     // Get the new full path
     const newPath = buildFilepath(newFilename, workspaceRootPath);
     // Check if the current path exists
-    const newPathStats = await stat(newPath);
+    let newPathStats;
     const newPathExists = await filePathExists(newPath);
 
     if (newPathExists) {
+      newPathStats = await fs.stat(newPath);
       if (!newPathStats.isFile()) {
         await showInformationMessage(`**${newPath}** alredy exists.`);
         return;
@@ -256,12 +250,15 @@ const add = async ({
         return;
       }
     }
-
     const newPathParsed = parse(newPath);
 
-    await ensureDir(newPathParsed.dir);
+    await fs.ensureDir(newPathParsed.dir);
     if (!!newPathParsed.ext) {
-      await createFileSync(newPath);
+      await fs.createFileSync(newPath);
+    }
+
+    if (!newPathStats) {
+      newPathStats = await fs.stat(newPath);
     }
 
     if (!!newPathParsed.ext && newPathStats.isFile()) {
@@ -278,4 +275,34 @@ const add = async ({
   return;
 };
 
-export { duplicate, remove, renameFile, add };
+const copyFileUrl = async (
+  { uri, workspaceRootPath = '' }: ActionParams,
+  { removeRoot }: CopyOptions
+) => {
+  const fileUrl = removeRoot
+    ? removeFirstSlashInString(`${uri.fsPath.replace(workspaceRootPath, '')}`)
+    : uri.fsPath;
+
+  writeToClipboard(fileUrl);
+
+  return showInformationMessage(`**${fileUrl}** copied.`);
+};
+
+const copyRelativeFilePath = async (params: ActionParams) => {
+  const copyOptions: CopyOptions = { removeRoot: true };
+  return copyFileUrl(params, copyOptions);
+};
+
+const copyFilePath = async (params: ActionParams) => {
+  const copyOptions: CopyOptions = { removeRoot: false };
+  return copyFileUrl(params, copyOptions);
+};
+
+export {
+  duplicate,
+  remove,
+  renameFile,
+  add,
+  copyRelativeFilePath,
+  copyFilePath,
+};

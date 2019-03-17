@@ -1,8 +1,10 @@
 {
-  "name": "vscode-file-extra",
-  "displayName": "vscode-file-extra",
+  "name": "vscode-file-extras",
+  "displayName": "vscode-file-extras",
   "description": "VSCode Extension for files based on Atom Editor",
   "version": "0.0.1",
+  "private": false,
+  "license": "MIT",
   "engines": {
     "vscode": "^1.32.0"
   },
@@ -23,6 +25,14 @@
     "delete"
   ],
   "icon": "images/logo.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/willmendesneto/vscode-file-extras.git"
+  },
+  "bugs": {
+    "url": "https://github.com/willmendesneto/vscode-file-extras/issues"
+  },
+  "homepage": "https://github.com/willmendesneto/vscode-file-extras#readme",
   "galleryBanner": {
     "color": "#FFF",
     "theme": "light"
@@ -31,7 +41,9 @@
     "onCommand:fileExtraDuplicate.execute",
     "onCommand:fileExtraRemove.execute",
     "onCommand:fileExtraRename.execute",
-    "onCommand:fileExtraAdd.execute"
+    "onCommand:fileExtraAdd.execute",
+    "onCommand:fileExtraCopyFilePath.execute",
+    "onCommand:fileExtraCopyRelativeFilePath.execute"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -39,31 +51,38 @@
       {
         "command": "fileExtraDuplicate.execute",
         "category": "FileExtra",
-        "title": "Duplicate file or folder"
+        "title": "Duplicate File or Folder"
       },
       {
         "command": "fileExtraRemove.execute",
         "category": "FileExtra",
-        "title": "Remove file or folder"
+        "title": "Delete/Remove File or Folder"
       },
       {
         "command": "fileExtraRename.execute",
         "category": "FileExtra",
-        "title": "Rename file"
+        "title": "Rename File"
       },
       {
         "command": "fileExtraAdd.execute",
         "category": "FileExtra",
-        "title": "Add new file or folder"
+        "title": "Add New File or Folder"
+      },
+      {
+        "command": "fileExtraCopyFilePath.execute",
+        "category": "FileExtra",
+        "title": "Copy File Path"
+      },
+      {
+        "command": "fileExtraCopyRelativeFilePath.execute",
+        "category": "FileExtra",
+        "title": "Copy Relative File Path"
       }
     ],
     "menus": {
       "explorer/context": [
         {
           "command": "fileExtraDuplicate.execute"
-        },
-        {
-          "command": "fileExtraAdd.execute"
         }
       ],
       "editor/title/context": [
@@ -78,6 +97,12 @@
         },
         {
           "command": "fileExtraAdd.execute"
+        },
+        {
+          "command": "fileExtraCopyFilePath.execute"
+        },
+        {
+          "command": "fileExtraCopyRelativeFilePath.execute"
         }
       ]
     },
@@ -107,6 +132,7 @@
     "test": "npm run compile && node ./node_modules/vscode/bin/test"
   },
   "devDependencies": {
+    "@types/clipboardy": "^1.1.0",
     "@types/fs-extra": "^5.0.5",
     "@types/lodash.escaperegexp": "^4.1.6",
     "@types/mocha": "^2.2.42",
@@ -117,6 +143,7 @@
     "vscode": "^1.1.28"
   },
   "dependencies": {
+    "clipboardy": "^1.2.3",
     "fs-extra": "^7.0.1"
   }
 }

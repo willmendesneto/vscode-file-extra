@@ -16,9 +16,9 @@ const context: any = {
 // Defines a Mocha test suite to group tests of similar kind together
 suite('Extension Tests', () => {
   // Defines a Mocha unit test
-  test('Should have only 4 commands', () => {
+  test('Should have only 6 commands', () => {
     activate(context);
 
-    assert.equal(context.subscriptions.length, 4);
+    assert.equal(context.subscriptions.length, 6);
   });
 });

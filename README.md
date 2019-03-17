@@ -1,22 +1,33 @@
-# vscode-file-extra
+# VSCode File Extras
 
-[![Build Status](https://travis-ci.org/willmendesneto/vscode-file-extra.svg?branch=master)](https://travis-ci.org/willmendesneto/vscode-file-extra)
+> Working with files in VSCode like a boss 😎
+
+[![Build Status](https://travis-ci.org/willmendesneto/vscode-file-extras.svg?branch=master)](https://travis-ci.org/willmendesneto/vscode-file-extras)
 [![Prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE)
 
 ![Yeoman](./images/logo.png)
 
-This is the README for your extension "vscode-file-extra". After writing up a brief description, we recommend including the following sections.
+Install
+
+Press `F1` or type `cmd+shift+p` or `cmd+shift+p`, type `ext install` and press [Enter]. After that search for File Extra.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+### Editor Explorer
 
-For example if there is an image subfolder under your extension project workspace:
+Go to the explorer list of files and folder and click on the file.
 
-\!\[feature X\]\(images/command-list.png\)
+Options:
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+- `Add New File or Folder`: Adds a new file or folder;
+- `Duplicate File or Folder`: Duplicates File or Folder based on the focus location;
+
+### Command palette
+
+Type `cmd+shift+p` or `cmd+shift+p` for open the command pallete. All the commands have the prefix "FileExtra: ". So, after that, you can select one of these commands pressing [Enter] to confirm, or [Escape] to cancel.
+
+![feature X](images/command-list.png)
 
 ## Requirements
 
@@ -24,55 +35,12 @@ If you have any requirements or dependencies, add a section describing those and
 
 ## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-- `myExtension.enable`: enable/disable this extension
-- `myExtension.thing`: set to `blah` to do something
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Working with Markdown
-
-**Note:** You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-- Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-- Toggle preview (`Shift+CMD+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-- Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (macOS) to see a list of Markdown snippets
-
-### For more information
-
-- [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-- [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+- `fileExtra.openFileAfterDuplication`: Automatically open newly duplicated files
+- `fileExtra.closeFileAfterRemove`: Automatically close file in editor after remove
 
 ## Changes
 
-See [CHANGELOG.md](./CHANGELOG.md).
+See [CHANGELOG.md](./CHANGELOG.md) for more details.
 
 ## Author
 

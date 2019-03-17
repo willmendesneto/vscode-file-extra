@@ -12,7 +12,14 @@ import {
   URITextEditorCommand,
   ActionParamsBuilder,
 } from './types';
-import { duplicate, remove, renameFile, add } from './actions';
+import {
+  duplicate,
+  remove,
+  renameFile,
+  add,
+  copyFilePath,
+  copyRelativeFilePath,
+} from './actions';
 import { removeLastSlashInString } from './helpers/string-manipulations';
 
 const getActionParams = ({
@@ -72,10 +79,22 @@ const activate = (context: ExtensionContext): void => {
     (uri: URITextEditorCommand) => startCommand(uri, add)
   );
 
+  const copyFileUrl = commands.registerCommand(
+    'fileExtraCopyFilePath.execute',
+    (uri: URITextEditorCommand) => startCommand(uri, copyFilePath)
+  );
+
+  const copyRelativeFileUrl = commands.registerCommand(
+    'fileExtraCopyRelativeFilePath.execute',
+    (uri: URITextEditorCommand) => startCommand(uri, copyRelativeFilePath)
+  );
+
   context.subscriptions.push(duplicateFileOrFolder);
   context.subscriptions.push(removeFileOrFolder);
   context.subscriptions.push(renameFileOrFolder);
   context.subscriptions.push(addFileOrFolder);
+  context.subscriptions.push(copyFileUrl);
+  context.subscriptions.push(copyRelativeFileUrl);
 };
 
 export { activate };
