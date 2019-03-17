@@ -22,7 +22,7 @@ test_script:
   - npm --version
   # Run the test
   - cmd: npm run lint --silent
-  - cmd: npm test --silent
+  - cmd: npm run test-compile && npm run test-ci --silent
 
 build: off
 matrix:

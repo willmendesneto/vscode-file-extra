@@ -23,4 +23,4 @@ install:
 
 script:
   - npm run lint --silent
-  - npm test --silent
+  - npm run test-compile && npm run test-ci --silent
