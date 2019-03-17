@@ -6,6 +6,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## Fixed
+
+- Fixing Build task in CI
+
 ## [1.1.1][] - 2019-03-17
 
 ## Fixed
@@ -35,6 +39,5 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Support for copy relative file path
 - Adding Cross platform CI with Travis-CI and Appveyor
 
-
-[Unreleased]: https://github.com/willmendesneto/vscode-file-extra/compare/v1.1.1...HEAD
+[unreleased]: https://github.com/willmendesneto/vscode-file-extra/compare/v1.1.1...HEAD
 [1.1.1]: https://github.com/willmendesneto/vscode-file-extra/tree/v1.1.1
