@@ -9,9 +9,13 @@
 
 ![Yeoman](./images/logo.png)
 
-Install
+## VSCode Marketplate
 
-Press `F1` or type `cmd+shift+p` or `cmd+shift+p`, type `ext install` and press [Enter]. After that search for File Extra.
+You can check more about the package on [VSCode File Extra page in VSCode Marketplace](https://marketplace.visualstudio.com/items?itemName=willmendesneto.vscode-file-extra).
+
+## Install
+
+Press `F1` or type `cmd+shift+p` or `cmd+shift+p`, type `ext install` and press [Enter]. After that search for `vscode-file-extra`.
 
 ## Features
 

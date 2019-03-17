@@ -13,6 +13,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## Added
 
 - Adding CHANGELOG automation
+- Adding link for page in VSCode Marketplace
 
 ## [1.1.0][] - 2019-03-17
 
