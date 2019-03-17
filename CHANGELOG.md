@@ -6,6 +6,14 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## Added
+
+- Added unit tests for proxyquire
+
+## Updated
+
+- Disabling extensions when running tests via editor
+
 ## [1.1.3][] - 2019-03-17
 
 ## Fixed
@@ -51,7 +59,5 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 [1.1.1]: https://github.com/willmendesneto/vscode-file-extra/tree/v1.1.1
 [unreleased]: https://github.com/willmendesneto/vscode-file-extra/compare/v1.1.2...HEAD
 [1.1.2]: https://github.com/willmendesneto/vscode-file-extra/tree/v1.1.2
-
-
-[Unreleased]: https://github.com/willmendesneto/vscode-file-extra/compare/v1.1.3...HEAD
+[unreleased]: https://github.com/willmendesneto/vscode-file-extra/compare/v1.1.3...HEAD
 [1.1.3]: https://github.com/willmendesneto/vscode-file-extra/tree/v1.1.3
