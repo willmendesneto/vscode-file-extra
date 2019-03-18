@@ -9,6 +9,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## Added
 
 - Added unit tests for proxyquire
+- Support copy file name
 
 ## Updated
 

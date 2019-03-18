@@ -19,6 +19,7 @@ import {
   add,
   copyFilePath,
   copyRelativeFilePath,
+  copyFileName as copyFileNameOnly,
 } from './actions';
 import { removeLastSlashInString } from './helpers/string-manipulations';
 
@@ -89,12 +90,17 @@ const activate = (context: ExtensionContext): void => {
     (uri: URITextEditorCommand) => startCommand(uri, copyRelativeFilePath)
   );
 
+  const copyFileName = commands.registerCommand(
+    'fileExtraCopyFileName.execute',
+    (uri: URITextEditorCommand) => startCommand(uri, copyFileNameOnly)
+  );
+
   context.subscriptions.push(duplicateFileOrFolder);
   context.subscriptions.push(removeFileOrFolder);
   context.subscriptions.push(renameFileOrFolder);
   context.subscriptions.push(addFileOrFolder);
   context.subscriptions.push(copyFileUrl);
-  context.subscriptions.push(copyRelativeFileUrl);
+  context.subscriptions.push(copyFileName);
 };
 
 export { activate };

@@ -273,17 +273,24 @@ const add = async ({
   return;
 };
 
+const copyTextContent = (fileUrl: string) => {
+  writeToClipboard(fileUrl);
+  return showInformationMessage(`**${fileUrl}** copied.`);
+};
+
 const copyFileUrl = async (
   { uri, workspaceRootPath = '' }: ActionParams,
   { removeRoot }: CopyOptions
 ) => {
-  const fileUrl = removeRoot
-    ? removeFirstSlashInString(`${uri.fsPath.replace(workspaceRootPath, '')}`)
-    : uri.fsPath;
+  try {
+    const fileUrl = removeRoot
+      ? removeFirstSlashInString(`${uri.fsPath.replace(workspaceRootPath, '')}`)
+      : uri.fsPath;
 
-  writeToClipboard(fileUrl);
-
-  return showInformationMessage(`**${fileUrl}** copied.`);
+    return copyTextContent(fileUrl);
+  } catch (error) {
+    errorMessage(error);
+  }
 };
 
 const copyRelativeFilePath = async (params: ActionParams) => {
@@ -296,6 +303,30 @@ const copyFilePath = async (params: ActionParams) => {
   return copyFileUrl(params, copyOptions);
 };
 
+const copyFileName = async (params: ActionParams) => {
+  try {
+    const fileUrl = params.uri.fsPath;
+
+    if (fileUrl.toLowerCase().match(/^untitled-(\d*)$/g)) {
+      throw new Error(
+        `**${fileUrl}** is not saved. Please make sure you saved the file before save`
+      );
+    }
+
+    const filePathStats = await fs.stat(fileUrl);
+    if (!filePathStats.isFile()) {
+      throw new Error(`**${fileUrl}** is not a file and can not be copied`);
+    }
+
+    const filePathParsed = parse(fileUrl);
+    const filename = `${filePathParsed.name}${filePathParsed.ext}`;
+
+    return copyTextContent(filename);
+  } catch (error) {
+    errorMessage(error);
+  }
+};
+
 export {
   duplicate,
   remove,
@@ -303,4 +334,5 @@ export {
   add,
   copyRelativeFilePath,
   copyFilePath,
+  copyFileName,
 };

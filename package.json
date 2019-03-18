@@ -44,7 +44,8 @@
     "onCommand:fileExtraRename.execute",
     "onCommand:fileExtraAdd.execute",
     "onCommand:fileExtraCopyFilePath.execute",
-    "onCommand:fileExtraCopyRelativeFilePath.execute"
+    "onCommand:fileExtraCopyRelativeFilePath.execute",
+    "onCommand:fileExtraCopyFileName.execute"
   ],
   "main": "./dist/extension.js",
   "contributes": {
@@ -78,6 +79,11 @@
         "command": "fileExtraCopyRelativeFilePath.execute",
         "category": "FileExtra",
         "title": "Copy Relative File Path"
+      },
+      {
+        "command": "fileExtraCopyFileName.execute",
+        "category": "FileExtra",
+        "title": "Copy File Name"
       }
     ],
     "menus": {
@@ -104,6 +110,9 @@
         },
         {
           "command": "fileExtraCopyRelativeFilePath.execute"
+        },
+        {
+          "command": "fileExtraCopyFileName.execute"
         }
       ]
     },

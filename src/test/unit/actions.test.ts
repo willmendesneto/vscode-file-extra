@@ -7,9 +7,8 @@ import * as proxyquire from 'proxyquire';
 const sandbox = sinon.createSandbox();
 
 const workspaceRootPath = resolve(join(__dirname, './../fixtures'));
+const filename = 'file.txt';
 
-const filename = 'another-folder/file.js';
-const existentFile = 'a.js';
 const uri = { fsPath: workspaceRootPath };
 
 describe('Actions', () => {
@@ -25,8 +24,9 @@ describe('Actions', () => {
   const writeSync = sandbox.stub();
   const errorMessage = sandbox.stub();
   const pathExists = sinon.stub();
+  const stat = sinon.stub();
 
-  beforeEach(() => {
+  beforeEach(async () => {
     actions = proxyquire('../../actions', {
       vscode: {
         window: { showTextDocument, showErrorMessage },
@@ -39,20 +39,23 @@ describe('Actions', () => {
         showInformationMessage,
       },
       clipboardy: { writeSync },
-      'fs-extra': { pathExists },
+      'fs-extra': { pathExists, stat },
       './helpers/error-message': { errorMessage },
     });
   });
 
-  afterEach(async () => {
+  afterEach(() => {
     sandbox.reset();
-    await fs.removeSync(`${workspaceRootPath}/${filename}`);
   });
 
   after(() => sandbox.restore());
 
   describe('#add', () => {
     it('should add a new file in the workspace', async () => {
+      const isFile = sandbox.stub();
+      isFile.returns(true);
+      stat.returns({ isFile });
+
       showInputBox.returns(Promise.resolve(filename));
       openTextDocument.returns(
         Promise.resolve(`${workspaceRootPath}/${filename}`)
@@ -72,6 +75,8 @@ describe('Actions', () => {
     });
 
     it('should not add if new file already exists', async () => {
+      const existentFile = 'a.js';
+
       showInputBox.returns(Promise.resolve(existentFile));
       showWarningMessage.returns(Promise.resolve(false));
       pathExists.returns(Promise.resolve(true));
@@ -151,6 +156,38 @@ describe('Actions', () => {
         writeSync.firstCall.args[0],
         `${workspaceRootPath}/${filename}`
       );
+    });
+  });
+
+  describe('copyFileName', () => {
+    it('should copy file name in clipboard', async () => {
+      const isFile = sandbox.stub();
+      isFile.returns(true);
+      stat.returns({ isFile });
+
+      const mockFilename = `${workspaceRootPath}/${filename}`;
+      await actions.copyFileName({
+        uri: { fsPath: mockFilename },
+        workspaceRootPath,
+      });
+      assert.equal(writeSync.firstCall.args[0], filename);
+      assert.equal(errorMessage.callCount, 0);
+    });
+
+    it('should NOT copy file name in clipboard if file exists only in editor', async () => {
+      await actions.copyFileName({
+        uri: { fsPath: 'Untitled-1' },
+        workspaceRootPath,
+      });
+      assert.equal(errorMessage.callCount, 1);
+    });
+
+    it('should NOT copy file name in clipboard if content is not a file', async () => {
+      await actions.copyFileName({
+        uri: { fsPath: `${workspaceRootPath}/` },
+        workspaceRootPath,
+      });
+      assert.equal(errorMessage.callCount, 1);
     });
   });
 
