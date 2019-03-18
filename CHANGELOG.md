@@ -6,6 +6,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## [1.2.0][] - 2019-03-19
+
 ## Added
 
 - Added unit tests for proxyquire
@@ -62,3 +64,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 [1.1.2]: https://github.com/willmendesneto/vscode-file-extra/tree/v1.1.2
 [unreleased]: https://github.com/willmendesneto/vscode-file-extra/compare/v1.1.3...HEAD
 [1.1.3]: https://github.com/willmendesneto/vscode-file-extra/tree/v1.1.3
+
+
+[Unreleased]: https://github.com/willmendesneto/vscode-file-extra/compare/v1.2.0...HEAD
+[1.2.0]: https://github.com/willmendesneto/vscode-file-extra/tree/v1.2.0
