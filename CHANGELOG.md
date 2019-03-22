@@ -6,6 +6,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## [1.3.0][] - 2019-03-22
+
 ## Added
 
 - Keybindings for fileExtra events
@@ -74,3 +76,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 [1.1.3]: https://github.com/willmendesneto/vscode-file-extra/tree/v1.1.3
 [unreleased]: https://github.com/willmendesneto/vscode-file-extra/compare/v1.2.0...HEAD
 [1.2.0]: https://github.com/willmendesneto/vscode-file-extra/tree/v1.2.0
+
+
+[Unreleased]: https://github.com/willmendesneto/vscode-file-extra/compare/v1.3.0...HEAD
+[1.3.0]: https://github.com/willmendesneto/vscode-file-extra/tree/v1.3.0
