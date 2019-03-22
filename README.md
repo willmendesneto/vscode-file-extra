@@ -35,6 +35,16 @@ Type `cmd+shift+p` or `cmd+shift+p` for open the command pallete. All the comman
 
 ![Available Commands in Command Pallete](images/command-list.png)
 
+### Keyboard shortcuts
+
+* Add new file or folder - `ctrl+shift+a`
+* Copy file name - `ctrl+f ctrl+n`
+* Copy file path - `ctrl+c ctrl+f`
+* Copy relative file path - `ctrl+c ctrl+r`
+* Delete/Remove file or folder - `ctrl+d ctrl+f`
+* Duplicate file or folder - `ctrl+d ctrl+d`
+* Rename file - `ctrl+r ctrl+r`
+
 ## Requirements
 
 If you have any requirements or dependencies, add a section describing those and how to install and configure them.
