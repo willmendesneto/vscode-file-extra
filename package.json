@@ -141,44 +141,44 @@
         "command": "fileExtraAdd.execute"
       },
       {
-        "key": "ctrl+f ctrl+n",
-        "linux": "ctrl+f ctrl+n",
-        "mac": "cmd+f cmd+n",
+        "key": "ctrl+alt+f ctrl+alt+n",
+        "linux": "ctrl+alt+f ctrl+alt+n",
+        "mac": "alt+cmd+f alt+cmd+n",
         "when": "editorTextFocus",
         "command": "fileExtraCopyFileName.execute"
       },
       {
-        "key": "ctrl+c ctrl+f",
-        "linux": "ctrl+c ctrl+f",
-        "mac": "cmd+c cmd+f",
+        "key": "ctrl+alt+c ctrl+alt+f",
+        "linux": "ctrl+alt+c ctrl+alt+f",
+        "mac": "alt+cmd+c alt+cmd+f",
         "when": "editorTextFocus",
         "command": "fileExtraCopyFilePath.execute"
       },
       {
-        "key": "ctrl+c ctrl+r",
-        "linux": "ctrl+c ctrl+r",
-        "mac": "cmd+c cmd+r",
+        "key": "ctrl+alt+c ctrl+alt+r",
+        "linux": "ctrl+alt+c ctrl+alt+r",
+        "mac": "alt+cmd+c alt+cmd+r",
         "when": "editorTextFocus",
         "command": "fileExtraCopyRelativeFilePath.execute"
       },
       {
-        "key": "ctrl+r ctrl+m",
-        "linux": "ctrl+r ctrl+m",
-        "mac": "cmd+r cmd+m",
+        "key": "ctrl+alt+r ctrl+alt+m",
+        "linux": "ctrl+alt+r ctrl+alt+m",
+        "mac": "alt+cmd+r alt+cmd+m",
         "when": "editorTextFocus",
         "command": "fileExtraRemove.execute"
       },
       {
-        "key": "ctrl+d ctrl+d",
-        "linux": "ctrl+d ctrl+d",
-        "mac": "cmd+d cmd+d",
+        "key": "ctrl+alt+d ctrl+alt+d",
+        "linux": "ctrl+alt+d ctrl+alt+d",
+        "mac": "alt+cmd+d alt+cmd+d",
         "when": "editorTextFocus",
         "command": "fileExtraDuplicate.execute"
       },
       {
-        "key": "ctrl+r ctrl+r",
-        "linux": "ctrl+r ctrl+r",
-        "mac": "cmd+r cmd+r",
+        "key": "ctrl+alt+r ctrl+alt+r",
+        "linux": "ctrl+alt+r ctrl+alt+r",
+        "mac": "alt+cmd+r alt+cmd+r",
         "when": "editorTextFocus",
         "command": "fileExtraRename.execute"
       }
