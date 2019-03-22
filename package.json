@@ -131,7 +131,37 @@
           "description": "Automatically close file in editor after remove"
         }
       }
-    }
+    },
+    "keybindings": [
+      {
+        "key": "ctrl+shift+a",
+        "command": "fileExtraAdd.execute"
+      },
+      {
+        "key": "ctrl+f ctrl+n",
+        "command": "fileExtraCopyFileName.execute"
+      },
+      {
+        "key": "ctrl+c ctrl+f",
+        "command": "fileExtraCopyFilePath.execute"
+      },
+      {
+        "key": "ctrl+c ctrl+r",
+        "command": "fileExtraCopyRelativeFilePath.execute"
+      },
+      {
+        "key": "ctrl+d ctrl+f",
+        "command": "fileExtraRemove.execute"
+      },
+      {
+        "key": "ctrl+d ctrl+d",
+        "command": "fileExtraDuplicate.execute"
+      },
+      {
+        "key": "ctrl+r ctrl+r",
+        "command": "fileExtraRename.execute"
+      }
+    ]
   },
   "scripts": {
     "postinstall": "node ./node_modules/vscode/bin/install",
