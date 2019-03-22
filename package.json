@@ -134,32 +134,32 @@
     },
     "keybindings": [
       {
-        "key": "ctrl+shift+d",
-        "command": "fileExtraDuplicate.execute"
-      },
-      {
-        "key": "ctrl+shift+alt+r",
-        "command": "fileExtraRemove.execute"
-      },
-      {
-        "key": "ctrl+shift+r",
-        "command": "fileExtraRename.execute"
-      },
-      {
-        "key": "ctrl+shift+n",
+        "key": "ctrl+shift+a",
         "command": "fileExtraAdd.execute"
       },
       {
-        "key": "ctrl+shift+alt+c",
+        "key": "ctrl+f ctrl+n",
+        "command": "fileExtraCopyFileName.execute"
+      },
+      {
+        "key": "ctrl+c ctrl+f",
         "command": "fileExtraCopyFilePath.execute"
       },
       {
-        "key": "ctrl+alt+c",
+        "key": "ctrl+c ctrl+r",
         "command": "fileExtraCopyRelativeFilePath.execute"
       },
       {
-        "key": "ctrl+cmd+c",
-        "command": "fileExtraCopyFileName.execute"
+        "key": "ctrl+d ctrl+f",
+        "command": "fileExtraRemove.execute"
+      },
+      {
+        "key": "ctrl+d ctrl+d",
+        "command": "fileExtraDuplicate.execute"
+      },
+      {
+        "key": "ctrl+r ctrl+r",
+        "command": "fileExtraRename.execute"
       }
     ]
   },
