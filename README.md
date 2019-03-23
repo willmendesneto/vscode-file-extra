@@ -37,13 +37,13 @@ Type `cmd+shift+p` or `cmd+shift+p` for open the command pallete. All the comman
 
 ### Keyboard shortcuts
 
-- Add new file or folder - `ctrl+shift+a` - macOS `cmd+shift+a`
-- Copy file name - `ctrl+f ctrl+n` - macOS `cmd+f cmd+n`
-- Copy file path - `ctrl+c ctrl+f` - macOS `cmd+c cmd+f`
-- Copy relative file path - `ctrl+c ctrl+r` - macOS `cmd+c cmd+r`
-- Delete/Remove file or folder - `ctrl+r ctrl+m` - macOS `cmd+r cmd+m`
-- Duplicate file or folder - `ctrl+d ctrl+d` - macOS `cmd+d cmd+d`
-- Rename file - `ctrl+r ctrl+r` - macOS `cmd+r cmd+r`
+- Add new file or folder - `shift+alt+n shift+alt+f`
+- Copy file name - `shift+alt+f shift+alt+n`
+- Copy file path - `shift+alt+c shift+alt+f`
+- Copy relative file path - `shift+alt+c shift+alt+r`
+- Delete/Remove file or folder - `shift+alt+r shift+alt+m`
+- Duplicate file or folder - `shift+alt+c shift+alt+p`
+- Rename file - `shift+alt+m shift+alt+v`
 
 ## Requirements
 

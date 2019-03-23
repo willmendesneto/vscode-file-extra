@@ -134,51 +134,51 @@
     },
     "keybindings": [
       {
-        "key": "ctrl+shift+a",
-        "linux": "ctrl+shift+a",
-        "mac": "cmd+shift+a",
+        "key": "shift+alt+n shift+alt+f",
+        "linux": "shift+alt+n shift+alt+f",
+        "mac": "shift+alt+n shift+alt+f",
         "when": "editorTextFocus",
         "command": "fileExtraAdd.execute"
       },
       {
-        "key": "ctrl+f ctrl+n",
-        "linux": "ctrl+f ctrl+n",
-        "mac": "cmd+f cmd+n",
+        "key": "shift+alt+f shift+alt+n",
+        "linux": "shift+alt+f shift+alt+n",
+        "mac": "shift+alt+f shift+alt+n",
         "when": "editorTextFocus",
         "command": "fileExtraCopyFileName.execute"
       },
       {
-        "key": "ctrl+c ctrl+f",
-        "linux": "ctrl+c ctrl+f",
-        "mac": "cmd+c cmd+f",
+        "key": "shift+alt+c shift+alt+f",
+        "linux": "shift+alt+c shift+alt+f",
+        "mac": "shift+alt+c shift+alt+f",
         "when": "editorTextFocus",
         "command": "fileExtraCopyFilePath.execute"
       },
       {
-        "key": "ctrl+c ctrl+r",
-        "linux": "ctrl+c ctrl+r",
-        "mac": "cmd+c cmd+r",
+        "key": "shift+alt+c shift+alt+r",
+        "linux": "shift+alt+c shift+alt+r",
+        "mac": "shift+alt+c shift+alt+r",
         "when": "editorTextFocus",
         "command": "fileExtraCopyRelativeFilePath.execute"
       },
       {
-        "key": "ctrl+r ctrl+m",
-        "linux": "ctrl+r ctrl+m",
-        "mac": "cmd+r cmd+m",
+        "key": "shift+alt+r shift+alt+m",
+        "linux": "shift+alt+r shift+alt+m",
+        "mac": "shift+alt+r shift+alt+m",
         "when": "editorTextFocus",
         "command": "fileExtraRemove.execute"
       },
       {
-        "key": "ctrl+d ctrl+d",
-        "linux": "ctrl+d ctrl+d",
-        "mac": "cmd+d cmd+d",
+        "key": "shift+alt+c shift+alt+p",
+        "linux": "shift+alt+c shift+alt+p",
+        "mac": "shift+alt+c shift+alt+p",
         "when": "editorTextFocus",
         "command": "fileExtraDuplicate.execute"
       },
       {
-        "key": "ctrl+r ctrl+r",
-        "linux": "ctrl+r ctrl+r",
-        "mac": "cmd+r cmd+r",
+        "key": "shift+alt+m shift+alt+v",
+        "linux": "shift+alt+m shift+alt+v",
+        "mac": "shift+alt+m shift+alt+v",
         "when": "editorTextFocus",
         "command": "fileExtraRename.execute"
       }
