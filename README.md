@@ -68,6 +68,10 @@ this project is using `vsce` package to publish, which makes things straightforw
 
 See [CHANGELOG.md](./CHANGELOG.md) for more details.
 
+## Contributing
+
+Feel free to contribute for this extension. You can find more details in our [How to Contribute](./CONTRIBUTING.md) docs
+
 ## Author
 
 **Wilson Mendes (willmendesneto)**
