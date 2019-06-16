@@ -76,6 +76,5 @@ Feel free to contribute for this extension. You can find more details in our [Ho
 
 **Wilson Mendes (willmendesneto)**
 
-- <https://plus.google.com/+WilsonMendes>
 - <https://twitter.com/willmendesneto>
 - <http://github.com/willmendesneto>
