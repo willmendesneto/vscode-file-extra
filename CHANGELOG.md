@@ -9,6 +9,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## Added
 
 - Adding `CONTRIBUTING.md` docs
+- Bumping dependencies to the latest version
+- Upgrading NodeJS to v10.20.1
 
 ## [2.0.0][] - 2019-03-23
 
