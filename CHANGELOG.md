@@ -6,6 +6,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## [2.2.0][] - 2020-04-23
+
 ## Added
 
 - Adding `CONTRIBUTING.md` docs
@@ -92,3 +94,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 [1.3.0]: https://github.com/willmendesneto/vscode-file-extra/tree/v1.3.0
 [unreleased]: https://github.com/willmendesneto/vscode-file-extra/compare/v2.0.0...HEAD
 [2.0.0]: https://github.com/willmendesneto/vscode-file-extra/tree/v2.0.0
+
+
+[Unreleased]: https://github.com/willmendesneto/vscode-file-extra/compare/v2.2.0...HEAD
+[2.2.0]: https://github.com/willmendesneto/vscode-file-extra/tree/v2.2.0
