@@ -1,5 +1,4 @@
 import { resolve, join } from 'path';
-import * as fs from 'fs-extra';
 import * as assert from 'assert';
 import * as sinon from 'sinon';
 import * as proxyquire from 'proxyquire';
@@ -7,6 +6,12 @@ import * as proxyquire from 'proxyquire';
 const sandbox = sinon.createSandbox();
 
 const workspaceRootPath = resolve(join(__dirname, './../fixtures'));
+
+const workspaceFolders = [
+  {
+    uri: { fsPath: workspaceRootPath },
+  },
+];
 const filename = 'file.txt';
 
 const uri = { fsPath: workspaceRootPath };
@@ -61,7 +66,7 @@ describe('Actions', () => {
         Promise.resolve(`${workspaceRootPath}/${filename}`)
       );
 
-      await actions.add({ uri, workspaceRootPath });
+      await actions.add({ uri, workspaceFolders });
 
       assert.equal(
         executeCommand.firstCall.args[0],
@@ -81,7 +86,7 @@ describe('Actions', () => {
       showWarningMessage.returns(Promise.resolve(false));
       pathExists.returns(Promise.resolve(true));
 
-      await actions.add({ uri, workspaceRootPath });
+      await actions.add({ uri, workspaceFolders });
 
       assert.equal(
         showWarningMessage.firstCall.args[0],
@@ -95,7 +100,7 @@ describe('Actions', () => {
       showWarningMessage.returns(Promise.resolve(false));
       pathExists.returns(Promise.resolve(true));
 
-      await actions.add({ uri, workspaceRootPath });
+      await actions.add({ uri, workspaceFolders });
 
       assert.equal(
         showInformationMessage.firstCall.args[0],
@@ -107,7 +112,7 @@ describe('Actions', () => {
     it('should not add a new file if user cancel the action', async () => {
       showInputBox.returns(Promise.resolve(undefined));
 
-      await actions.add({ uri, workspaceRootPath });
+      await actions.add({ uri, workspaceFolders });
 
       assert.equal(showErrorMessage.callCount, 0);
       assert.equal(showInformationMessage.callCount, 0);
@@ -120,7 +125,7 @@ describe('Actions', () => {
     it('should refresh file explorer after remove file', async () => {
       await actions.remove({
         uri: { fsPath: `${workspaceRootPath}/${filename}` },
-        workspaceRootPath,
+        workspaceFolders,
         settings: {},
       });
       assert.equal(
@@ -132,7 +137,7 @@ describe('Actions', () => {
     it('should refresh file explorer and remove deleted file after remove file if `closeFileAfterRemove` editor settings is true', async () => {
       await actions.remove({
         uri: { fsPath: `${workspaceRootPath}/${filename}` },
-        workspaceRootPath,
+        workspaceFolders,
         settings: { closeFileAfterRemove: true },
       });
       assert.equal(
@@ -150,7 +155,7 @@ describe('Actions', () => {
     it('should copy full file path in clipboard', async () => {
       await actions.copyFilePath({
         uri: { fsPath: `${workspaceRootPath}/${filename}` },
-        workspaceRootPath,
+        workspaceFolders,
       });
       assert.equal(
         writeSync.firstCall.args[0],
@@ -168,7 +173,7 @@ describe('Actions', () => {
       const mockFilename = `${workspaceRootPath}/${filename}`;
       await actions.copyFileName({
         uri: { fsPath: mockFilename },
-        workspaceRootPath,
+        workspaceFolders,
       });
       assert.equal(writeSync.firstCall.args[0], filename);
       assert.equal(errorMessage.callCount, 0);
@@ -177,7 +182,7 @@ describe('Actions', () => {
     it('should NOT copy file name in clipboard if file exists only in editor', async () => {
       await actions.copyFileName({
         uri: { fsPath: 'Untitled-1' },
-        workspaceRootPath,
+        workspaceFolders,
       });
       assert.equal(errorMessage.callCount, 1);
     });
@@ -185,7 +190,7 @@ describe('Actions', () => {
     it('should NOT copy file name in clipboard if content is not a file', async () => {
       await actions.copyFileName({
         uri: { fsPath: `${workspaceRootPath}/` },
-        workspaceRootPath,
+        workspaceFolders,
       });
       assert.equal(errorMessage.callCount, 1);
     });
@@ -195,7 +200,7 @@ describe('Actions', () => {
     it('should copy relative file path in clipboard', async () => {
       await actions.copyRelativeFilePath({
         uri: { fsPath: `${workspaceRootPath}/${filename}` },
-        workspaceRootPath,
+        workspaceFolders,
       });
       assert.equal(writeSync.firstCall.args[0], filename);
     });
