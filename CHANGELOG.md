@@ -6,6 +6,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## [3.0.0][] - 2020-05-18
+
 ### Added
 
 - Adding `npm run clean` to remove repository artifacts
@@ -106,3 +108,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 [2.0.0]: https://github.com/willmendesneto/vscode-file-extra/tree/v2.0.0
 [unreleased]: https://github.com/willmendesneto/vscode-file-extra/compare/v2.2.0...HEAD
 [2.2.0]: https://github.com/willmendesneto/vscode-file-extra/tree/v2.2.0
+
+
+[Unreleased]: https://github.com/willmendesneto/vscode-file-extra/compare/v3.0.0...HEAD
+[3.0.0]: https://github.com/willmendesneto/vscode-file-extra/tree/v3.0.0
