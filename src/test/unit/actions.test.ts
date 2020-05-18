@@ -7,14 +7,15 @@ const sandbox = sinon.createSandbox();
 
 const workspaceRootPath = resolve(join(__dirname, './../fixtures'));
 
+const filename = 'file.txt';
+const uri = { fsPath: `${workspaceRootPath}/${filename}` };
 const workspaceFolders = [
   {
+    index: 0,
+    name: 'fixtures',
     uri: { fsPath: workspaceRootPath },
   },
 ];
-const filename = 'file.txt';
-
-const uri = { fsPath: workspaceRootPath };
 
 describe('Actions', () => {
   let actions;
@@ -28,8 +29,8 @@ describe('Actions', () => {
   const showInformationMessage = sandbox.stub();
   const writeSync = sandbox.stub();
   const errorMessage = sandbox.stub();
-  const pathExists = sinon.stub();
-  const stat = sinon.stub();
+  const pathExists = sandbox.stub();
+  const stat = sandbox.stub();
 
   beforeEach(async () => {
     actions = proxyquire('../../actions', {
