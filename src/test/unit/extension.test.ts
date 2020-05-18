@@ -13,9 +13,7 @@ const context: any = {
   subscriptions: [],
 };
 
-// Defines a Mocha test suite to group tests of similar kind together
 describe('Extension Tests', () => {
-  // Defines a Mocha unit test
   it('Should have only 6 commands', () => {
     activate(context);
 

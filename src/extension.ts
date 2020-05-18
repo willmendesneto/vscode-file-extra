@@ -21,13 +21,12 @@ import {
   copyRelativeFilePath,
   copyFileName as copyFileNameOnly,
 } from './actions';
-import { removeLastSlashInString } from './helpers/string-manipulations';
 
 const getActionParams = ({
   settings,
-  workspaceRootPath = '',
   uri,
   editor,
+  workspaceFolders = [],
 }: ActionParamsBuilder): ActionParams | undefined => {
   let URI: Uri = <Uri>uri;
   if (!URI || !(URI as Uri).fsPath) {
@@ -39,7 +38,7 @@ const getActionParams = ({
 
   return {
     settings,
-    workspaceRootPath: removeLastSlashInString(workspaceRootPath),
+    workspaceFolders,
     uri: URI,
   };
 };
@@ -47,14 +46,10 @@ const getActionParams = ({
 const startCommand = (uri: URITextEditorCommand, callback: Function) => {
   const params: ActionParams | undefined = getActionParams({
     uri,
-    workspaceRootPath: workspace.rootPath,
+    workspaceFolders: workspace.workspaceFolders,
     settings: workspace.getConfiguration().get('fileExtra') as IPluginSettings,
     editor: vsWindow.activeTextEditor,
   });
-
-  if (!params) {
-    return;
-  }
 
   return callback(params);
 };

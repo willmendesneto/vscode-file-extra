@@ -19,6 +19,8 @@ import { errorMessage } from './helpers/error-message';
 import {
   removeFirstSlashInString,
   removeLastSlashInString,
+  removeWorkspaceUrlRootFromUrl,
+  getWorkspaceUrlRootFromUrl,
 } from './helpers/string-manipulations';
 
 const filePathExists = async (newPath: string): Promise<boolean> => {
@@ -44,15 +46,20 @@ const openFile = async (filepath: string): Promise<TextEditor> => {
  */
 const duplicate = async ({
   uri,
-  workspaceRootPath = '',
+  workspaceFolders,
   settings,
 }: ActionParams): Promise<TextEditor | undefined> => {
   const oldPath = uri.fsPath;
   const oldPathParsed = parse(oldPath);
 
+  const workspaceRootPath = getWorkspaceUrlRootFromUrl(
+    workspaceFolders,
+    oldPathParsed.dir
+  );
+
   try {
     const oldPathStats = await fs.stat(oldPath);
-    // Add extemsion if is a file
+    // Add extension if is a file
     const extension = oldPathStats.isFile() ? oldPathParsed.ext : '';
     const workspaceLocation = oldPathParsed.dir.replace(workspaceRootPath, '');
 
@@ -66,6 +73,7 @@ const duplicate = async ({
       'Enter the new path for the duplicate.',
       newFileWithoutRoot
     );
+
     if (!newName) {
       return;
     }
@@ -141,23 +149,27 @@ const remove = async ({
  */
 const renameFile = async ({
   uri,
-  workspaceRootPath = '',
-  settings,
+  workspaceFolders,
 }: ActionParams): Promise<TextEditor | undefined> => {
   try {
     const oldPath = uri.fsPath;
     const oldPathParsed = parse(oldPath);
     const oldPathStats = await fs.stat(oldPath);
+    const workspaceRootPath = getWorkspaceUrlRootFromUrl(
+      workspaceFolders,
+      oldPathParsed.dir
+    );
 
-    // Add extemsion if is a file
+    // Add extension if is a file
     const extension = oldPathStats.isFile() ? oldPathParsed.ext : '';
 
     const newFileWithoutRoot = removeFirstSlashInString(
-      `${oldPathParsed.dir.replace(
-        workspaceRootPath,
-        ''
+      `${removeWorkspaceUrlRootFromUrl(
+        workspaceFolders,
+        oldPathParsed.dir
       )}/${removeLastSlashInString(oldPathParsed.name)}${extension}`
     );
+
     // Get a new name for the resource
     const newName = await showInputBox(
       'Enter the new file or folder name.',
@@ -209,16 +221,19 @@ const renameFile = async ({
  */
 const add = async ({
   uri,
-  workspaceRootPath = '',
+  workspaceFolders,
 }: ActionParams): Promise<TextEditor | undefined> => {
   const oldPath = uri.fsPath;
   const oldPathParsed = parse(oldPath);
 
+  const workspaceRootPath = getWorkspaceUrlRootFromUrl(
+    workspaceFolders,
+    oldPathParsed.dir
+  );
+
   try {
-    const newFileWithoutRoot = removeLastSlashInString(
-      removeFirstSlashInString(
-        `${oldPathParsed.dir.replace(workspaceRootPath, '')}`
-      )
+    const newFileWithoutRoot = removeFirstSlashInString(
+      removeWorkspaceUrlRootFromUrl(workspaceFolders, oldPathParsed.dir)
     );
     // Get a new name for the resource
     const newFilename = await showInputBox(
@@ -236,6 +251,9 @@ const add = async ({
     const newPathExists = await filePathExists(newPath);
     const newPathParsed = parse(newPath);
 
+    // Check if new file is a hidden file
+    const isAHiddenFile = newPathParsed.name.startsWith('.');
+
     if (newPathExists) {
       if (!newPathParsed.ext) {
         await showInformationMessage(`**${newPath}** alredy exists.`);
@@ -251,11 +269,11 @@ const add = async ({
     }
 
     await fs.ensureDir(newPathParsed.dir);
-    if (!!newPathParsed.ext) {
+    if (!!newPathParsed.ext || isAHiddenFile) {
       await fs.createFileSync(newPath);
     }
 
-    if (!!newPathParsed.ext) {
+    if (!!newPathParsed.ext || isAHiddenFile) {
       const newPathStats = await fs.stat(newPath);
 
       if (newPathStats.isFile()) {
@@ -279,12 +297,14 @@ const copyTextContent = (fileUrl: string) => {
 };
 
 const copyFileUrl = async (
-  { uri, workspaceRootPath = '' }: ActionParams,
+  { uri, workspaceFolders }: ActionParams,
   { removeRoot }: CopyOptions
 ) => {
   try {
     const fileUrl = removeRoot
-      ? removeFirstSlashInString(`${uri.fsPath.replace(workspaceRootPath, '')}`)
+      ? removeFirstSlashInString(
+          removeWorkspaceUrlRootFromUrl(workspaceFolders, uri.fsPath)
+        )
       : uri.fsPath;
 
     return copyTextContent(fileUrl);

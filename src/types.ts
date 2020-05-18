@@ -1,5 +1,5 @@
 import { Stats } from 'fs';
-import { Uri, TextEditor, TextDocument } from 'vscode';
+import { Uri, TextEditor, TextDocument, WorkspaceFolder } from 'vscode';
 import { ParsedPath } from 'path';
 
 export type FileStats = Stats;
@@ -12,17 +12,17 @@ export interface IPluginSettings {
 
 export type ActionParams = {
   uri: Uri;
-  workspaceRootPath?: string;
   settings: IPluginSettings;
+  workspaceFolders?: WorkspaceFolder[];
 };
 
 export type URITextEditorCommand = TextDocument | Uri;
 
 export type ActionParamsBuilder = {
   uri: URITextEditorCommand;
-  workspaceRootPath?: string;
   settings: IPluginSettings;
   editor: TextEditor | undefined;
+  workspaceFolders?: WorkspaceFolder[];
 };
 
 export type CopyOptions = {
