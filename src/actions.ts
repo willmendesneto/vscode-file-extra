@@ -78,11 +78,7 @@ const duplicate = async ({
       return;
     }
     // Get the new full path
-    const newPath = buildFilepath(
-      newName,
-      // TODO: Check if `workspaceRootPath` is still necessary
-      workspaceRootPath
-    );
+    const newPath = buildFilepath(newName, workspaceRootPath);
 
     // If a user tries to copy a file on the same path
     if (oldPath === newPath) {
@@ -250,11 +246,7 @@ const add = async ({
     }
 
     // Get the new full path
-    const newPath = buildFilepath(
-      newFilename,
-      // TODO: Check if `workspaceRootPath` is still necessary
-      workspaceRootPath
-    );
+    const newPath = buildFilepath(newFilename, workspaceRootPath);
     // Check if the current path exists
     const newPathExists = await filePathExists(newPath);
     const newPathParsed = parse(newPath);
