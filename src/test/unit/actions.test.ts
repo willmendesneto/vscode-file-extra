@@ -16,6 +16,11 @@ const workspaceFolders = [
     uri: { fsPath: workspaceRootPath },
   },
 ];
+const parsedPath = {
+  dir: `${workspaceRootPath}/${filename}`,
+  ext: '.txt',
+  name: filename,
+};
 
 describe('Actions', () => {
   let actions;
@@ -31,6 +36,8 @@ describe('Actions', () => {
   const errorMessage = sandbox.stub();
   const pathExists = sandbox.stub();
   const stat = sandbox.stub();
+  const parse = sandbox.stub();
+  const createFileSync = sandbox.stub();
 
   beforeEach(async () => {
     actions = proxyquire('../../actions', {
@@ -45,8 +52,9 @@ describe('Actions', () => {
         showInformationMessage,
       },
       clipboardy: { writeSync },
-      'fs-extra': { pathExists, stat },
+      'fs-extra': { pathExists, stat, createFileSync },
       './helpers/error-message': { errorMessage },
+      path: { parse },
     });
   });
 
@@ -58,15 +66,13 @@ describe('Actions', () => {
 
   describe('#add', () => {
     it('should add a new file in the workspace', async () => {
-      const isFile = sandbox.stub();
-      isFile.returns(true);
-      stat.returns({ isFile });
+      parse.returns(parsedPath);
+      createFileSync.returns(Promise.resolve());
 
       showInputBox.returns(Promise.resolve(filename));
       openTextDocument.returns(
         Promise.resolve(`${workspaceRootPath}/${filename}`)
       );
-
       await actions.add({ uri, workspaceFolders });
 
       assert.equal(
@@ -80,9 +86,32 @@ describe('Actions', () => {
       assert.equal(errorMessage.callCount, 0);
     });
 
+    it('should add a new folder in the workspace', async () => {
+      parse.returns(parsedPath);
+      const folder = 'another-folder';
+
+      showInputBox.returns(Promise.resolve(folder));
+      openTextDocument.returns(
+        Promise.resolve(`${workspaceRootPath}/${folder}`)
+      );
+
+      await actions.add({ uri, workspaceFolders });
+
+      assert.equal(
+        executeCommand.firstCall.args[0],
+        'workbench.files.action.refreshFilesExplorer'
+      );
+      assert.equal(
+        showTextDocument.firstCall.args[0],
+        `${workspaceRootPath}/${folder}`
+      );
+      assert.equal(errorMessage.callCount, 0);
+    });
+
     it('should not add if new file already exists', async () => {
       const existentFile = 'a.js';
 
+      parse.returns(parsedPath);
       showInputBox.returns(Promise.resolve(existentFile));
       showWarningMessage.returns(Promise.resolve(false));
       pathExists.returns(Promise.resolve(true));
@@ -97,6 +126,11 @@ describe('Actions', () => {
     });
 
     it('should not add if new folder already exists', async () => {
+      parse.returns({
+        dir: parsedPath.dir.replace(filename, 'folder'),
+        ext: '',
+        name: 'folder',
+      });
       showInputBox.returns(Promise.resolve('folder'));
       showWarningMessage.returns(Promise.resolve(false));
       pathExists.returns(Promise.resolve(true));
@@ -111,6 +145,7 @@ describe('Actions', () => {
     });
 
     it('should not add a new file if user cancel the action', async () => {
+      parse.returns(parsedPath);
       showInputBox.returns(Promise.resolve(undefined));
 
       await actions.add({ uri, workspaceFolders });
@@ -170,6 +205,10 @@ describe('Actions', () => {
       const isFile = sandbox.stub();
       isFile.returns(true);
       stat.returns({ isFile });
+      parse.returns({
+        ...parsedPath,
+        name: parsedPath.name.split('.')[0],
+      });
 
       const mockFilename = `${workspaceRootPath}/${filename}`;
       await actions.copyFileName({

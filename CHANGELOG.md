@@ -14,6 +14,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 - Fixing File methods when opening multiple workspaces
 - Fixing File Name methods (Copy, Copy Relative path, etc.) when opening multiple workspaces
+- Fixing folder addition when file is not hidden or doesn't have any extension
 
 ## [2.2.0][] - 2020-04-23
 

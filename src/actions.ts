@@ -249,10 +249,8 @@ const add = async ({
     const newPath = buildFilepath(newFilename, workspaceRootPath);
     // Check if the current path exists
     const newPathExists = await filePathExists(newPath);
-    const newPathParsed = parse(newPath);
 
-    // Check if new file is a hidden file
-    const isAHiddenFile = newPathParsed.name.startsWith('.');
+    const newPathParsed = parse(newPath);
 
     if (newPathExists) {
       if (!newPathParsed.ext) {
@@ -268,17 +266,21 @@ const add = async ({
       }
     }
 
+    // Creates main dir
     await fs.ensureDir(newPathParsed.dir);
-    if (!!newPathParsed.ext || isAHiddenFile) {
+
+    // Check if new file is a hidden file
+    const isAHiddenFile = newPathParsed.name.startsWith('.');
+
+    const shouldCreateFolder =
+      !newPathExists && !isAHiddenFile && !newPathParsed.ext;
+
+    // We can create a file or a folder. If it's not a file, it's a folder by definition
+    if (shouldCreateFolder) {
+      await fs.ensureDir(newPath);
+    } else {
       await fs.createFileSync(newPath);
-    }
-
-    if (!!newPathParsed.ext || isAHiddenFile) {
-      const newPathStats = await fs.stat(newPath);
-
-      if (newPathStats.isFile()) {
-        return openFile(newPath);
-      }
+      return openFile(newPath);
     }
 
     await commands.executeCommand(
