@@ -16,8 +16,8 @@ const getWorkspaceUrlRootFromUrl = (
   workspaceFolders: WorkspaceFolder[],
   url: string
 ) => {
-  const workspacePaths = workspaceFolders.map(w => w.uri.fsPath);
-  return workspacePaths.find(workspacePath => url.includes(workspacePath));
+  const workspacePaths = workspaceFolders.map((w) => w.uri.fsPath);
+  return workspacePaths.find((workspacePath) => url.includes(workspacePath));
 };
 
 export {
