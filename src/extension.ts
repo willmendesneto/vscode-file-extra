@@ -21,6 +21,7 @@ import {
   copyRelativeFilePath,
   copyFileName as copyFileNameOnly,
 } from './actions';
+import { showInformationMessage } from './helpers/prompt';
 
 const getActionParams = ({
   settings,
@@ -51,6 +52,11 @@ const startCommand = (uri: URITextEditorCommand, callback: Function) => {
     editor: vsWindow.activeTextEditor,
   });
 
+  if (!params) {
+    return showInformationMessage(
+      `Please make sure your editor is focused before run this command.`
+    );
+  }
   return callback(params);
 };
 
@@ -96,6 +102,7 @@ const activate = (context: ExtensionContext): void => {
   context.subscriptions.push(addFileOrFolder);
   context.subscriptions.push(copyFileUrl);
   context.subscriptions.push(copyFileName);
+  context.subscriptions.push(copyRelativeFileUrl);
 };
 
 export { activate };

@@ -4,7 +4,7 @@
 //
 
 // The module 'assert' provides assertion methods from node
-import * as assert from 'assert';
+import assert from 'assert';
 
 import { activate } from '../../extension';
 
@@ -14,9 +14,9 @@ const context: any = {
 };
 
 describe('Extension Tests', () => {
-  it('Should have only 6 commands', () => {
+  it('Should have only 7 commands', () => {
     activate(context);
 
-    assert.equal(context.subscriptions.length, 6);
+    assert.equal(context.subscriptions.length, 7);
   });
 });

@@ -1,6 +1,6 @@
-import * as assert from 'assert';
-import * as sinon from 'sinon';
-import * as proxyquire from 'proxyquire';
+import assert from 'assert';
+import sinon from 'sinon';
+import proxyquire from 'proxyquire';
 
 const WORKSPACE_DIR = '/Workspace/example';
 const FILENAME = 'folder/test/file.ts';

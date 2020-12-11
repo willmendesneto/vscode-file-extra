@@ -7,7 +7,7 @@ import {
 } from 'vscode';
 import { parse } from 'path';
 import * as fs from 'fs-extra';
-import { writeSync as writeToClipboard } from 'clipboardy';
+const writeToClipboard = require('clipboardy').writeSync;
 import { ActionParams, CopyOptions } from './types';
 import { buildFilepath } from './helpers/files';
 import {
@@ -33,9 +33,9 @@ const filePathExists = async (newPath: string): Promise<boolean> => {
  * Open file after duplicate action.
  */
 const openFile = async (filepath: string): Promise<TextEditor> => {
-  const document = await (workspace.openTextDocument(filepath) as Promise<
-    TextDocument
-  >);
+  const document = await (workspace.openTextDocument(
+    filepath
+  ) as Promise<TextDocument>);
   await commands.executeCommand('workbench.files.action.refreshFilesExplorer');
 
   return vsWindow.showTextDocument(document);
