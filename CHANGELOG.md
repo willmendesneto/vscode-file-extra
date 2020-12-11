@@ -6,6 +6,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## [3.1.0][] - 2020-12-11
+
 ### Fixing
 
 - Removing error when editor is not focused
@@ -118,3 +120,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 [2.2.0]: https://github.com/willmendesneto/vscode-file-extra/tree/v2.2.0
 [unreleased]: https://github.com/willmendesneto/vscode-file-extra/compare/v3.0.0...HEAD
 [3.0.0]: https://github.com/willmendesneto/vscode-file-extra/tree/v3.0.0
+
+
+[Unreleased]: https://github.com/willmendesneto/vscode-file-extra/compare/v3.1.0...HEAD
+[3.1.0]: https://github.com/willmendesneto/vscode-file-extra/tree/v3.1.0
