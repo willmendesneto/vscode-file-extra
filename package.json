@@ -222,7 +222,7 @@
   },
   "dependencies": {
     "clipboardy": "^2.3.0",
-    "fs-extra": "^9.0.1",
+    "fs-extra": "^9.1.0",
     "spawn-sync": "^2.0.0"
   }
 }
