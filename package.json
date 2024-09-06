@@ -221,7 +221,7 @@
     "webpack-cli": "^4.2.0"
   },
   "dependencies": {
-    "clipboardy": "^2.3.0",
+    "clipboardy": "^3.0.0",
     "fs-extra": "^9.1.0",
     "spawn-sync": "^2.0.0"
   }
